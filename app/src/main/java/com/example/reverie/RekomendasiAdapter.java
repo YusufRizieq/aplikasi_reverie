@@ -1,5 +1,6 @@
 package com.example.reverie;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,13 @@ public class RekomendasiAdapter extends RecyclerView.Adapter<RekomendasiAdapter.
         holder.productImage.setImageResource(product.getImageResource());
         holder.productName.setText(product.getName());
         holder.productPrice.setText("Rp " + product.getPrice());
+
+        // Menambahkan OnClickListener pada item
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), DetailActivity.class);
+            intent.putExtra("product", product);  // Mengirimkan objek Product
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override

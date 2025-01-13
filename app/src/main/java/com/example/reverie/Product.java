@@ -1,22 +1,30 @@
 package com.example.reverie;
 
-public class Product {
-    private String name;                 // Nama produk
-    private String price;                // Harga produk
-    private int discountPercentage;      // Persentase diskon
-    private int soldCount;               // Jumlah terjual
-    private int imageResource;           // Resource gambar
-    private String shortDescription;     // Deskripsi singkat
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Product implements Parcelable {
+    private String name;
+    private String price;
+    private int discountPercentage;
+    private int soldCount;
+    private int imageResource;
+    private String shortDescription;
+
+
+
+    private String category;
 
     // Konstruktor lengkap
     public Product(String name, String price, int discountPercentage, int soldCount,
-                   int imageResource, String shortDescription) {
+                   int imageResource, String shortDescription, String category) {
         this.name = name;
         this.price = price;
         this.discountPercentage = discountPercentage;
         this.soldCount = soldCount;
         this.imageResource = imageResource;
         this.shortDescription = shortDescription;
+        this.category = category;
     }
 
     // Konstruktor untuk Flash Sale
@@ -56,5 +64,49 @@ public class Product {
 
     public String getShortDescription() {
         return shortDescription;
+    }
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    // Implementasi Parcelable
+    protected Product(Parcel in) {
+        name = in.readString();
+        price = in.readString();
+        discountPercentage = in.readInt();
+        soldCount = in.readInt();
+        imageResource = in.readInt();
+        shortDescription = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(price);
+        dest.writeInt(discountPercentage);
+        dest.writeInt(soldCount);
+        dest.writeInt(imageResource);
+        dest.writeString(shortDescription);
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 }

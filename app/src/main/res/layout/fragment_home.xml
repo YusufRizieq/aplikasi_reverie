@@ -36,8 +36,8 @@
         android:layout_gravity="center_horizontal"
         android:paddingStart="20dp"
         android:layout_margin="16dp"
-        android:drawableEnd="@drawable/ic_home"
-        android:paddingEnd="5dp"
+        android:drawableEnd="@drawable/ic_search"
+        android:paddingEnd="15dp"
         android:background="@drawable/search_background" />
 
     <!-- Kategori -->
