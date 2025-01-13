@@ -19,6 +19,13 @@ public class RekomendasiAdapter extends RecyclerView.Adapter<RekomendasiAdapter.
     public RekomendasiAdapter(List<Product> recommendedProducts) {
         this.recommendedProducts = recommendedProducts;
     }
+    public void updateData(List<Product> newProductList) {
+        // Mengganti data lama dengan data baru
+        recommendedProducts.clear();
+        recommendedProducts.addAll(newProductList);
+        // Memberitahu RecyclerView bahwa data telah berubah
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -32,7 +39,7 @@ public class RekomendasiAdapter extends RecyclerView.Adapter<RekomendasiAdapter.
         Product product = recommendedProducts.get(position);
         holder.productImage.setImageResource(product.getImageResource());
         holder.productName.setText(product.getName());
-        holder.productPrice.setText("Rp " + product.getPrice());
+        holder.productPrice.setText( product.getPrice());
 
         // Menambahkan OnClickListener pada item
         holder.itemView.setOnClickListener(v -> {
@@ -40,6 +47,7 @@ public class RekomendasiAdapter extends RecyclerView.Adapter<RekomendasiAdapter.
             intent.putExtra("product", product);  // Mengirimkan objek Product
             v.getContext().startActivity(intent);
         });
+
     }
 
     @Override
@@ -58,4 +66,6 @@ public class RekomendasiAdapter extends RecyclerView.Adapter<RekomendasiAdapter.
             productPrice = itemView.findViewById(R.id.productPrice);
         }
     }
+
+
 }

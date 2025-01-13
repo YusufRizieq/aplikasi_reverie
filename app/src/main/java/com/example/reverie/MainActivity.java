@@ -23,11 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (item.getItemId() == R.id.nav_home) {
                 selectedFragment = new HomeFragment();
-            } else if (item.getItemId() == R.id.nav_new_product) {
-                selectedFragment = new NewProductFragment();
-            } else if (item.getItemId() == R.id.nav_cart) {
-                selectedFragment = new CartFragment();
-            } else if (item.getItemId() == R.id.nav_account) {
+            }  else if (item.getItemId() == R.id.nav_account) {
                 selectedFragment = new AccountFragment();
             }
 

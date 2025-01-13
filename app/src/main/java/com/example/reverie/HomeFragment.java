@@ -41,6 +41,28 @@ public class HomeFragment extends Fragment {
         recyclerRekomendasi.setLayoutManager(gridLayoutManager);
         recyclerRekomendasi.setHasFixedSize(true);
         recyclerRekomendasi.setAdapter(new RekomendasiAdapter(ProductData.getRekomendasi()));
+
+        // Inisialisasi adapter dengan data awal
+        RekomendasiAdapter rekomendasiAdapter = new RekomendasiAdapter(ProductData.getRekomendasi());
+        recyclerRekomendasi.setAdapter(rekomendasiAdapter);
+
+        // Tangkap klik pada kategori T-Shirt
+        view.findViewById(R.id.categoryTshirt).setOnClickListener(v -> {
+            List<Product> filteredProducts = ProductData.getFilteredProducts("TShirt");
+            rekomendasiAdapter.updateData(filteredProducts); // Perbarui data adapter
+        });
+
+        // Tangkap klik pada kategori Jersey
+        view.findViewById(R.id.categoryJersey).setOnClickListener(v -> {
+            List<Product> filteredProducts = ProductData.getFilteredProducts("Jersey");
+            rekomendasiAdapter.updateData(filteredProducts); // Perbarui data adapter
+        });
+
+        // Tangkap klik pada kategori Hoodie
+        view.findViewById(R.id.categoryHoodie).setOnClickListener(v -> {
+            List<Product> filteredProducts = ProductData.getFilteredProducts("Hoodie");
+            rekomendasiAdapter.updateData(filteredProducts); // Perbarui data adapter
+        });
         return view;
     }
 
